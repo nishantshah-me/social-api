@@ -51,7 +51,7 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
 
     public void onFacebookSignIn(View v){
         social=new SocialBuilder()
-                .setFacebookApplicationId(getResources().getString(com.socialapi.R.string.facebook_app_id))
+                .setFacebookApplicationId(getResources().getString(R.string.facebook_app_id))
                 .setSocialType(SocialType.FACEBOOK)
                 .setCallback(this)
                 .build();
