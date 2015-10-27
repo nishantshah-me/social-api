@@ -2,16 +2,14 @@ package com.socialapi.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.socialapi.Config;
 import com.socialapi.Social;
-import com.socialapi.Social.SocialBuilder;
 import com.socialapi.SocialCallback;
-import com.socialapi.SocialType;
 import com.socialapi.SocialUserProfile;
+import com.socialapi.model.FacebookService;
 
 /**
  * Created by webwerks on 23/10/15.
@@ -24,6 +22,7 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        social=new Social(this,this);
     }
 
     @Override
@@ -34,14 +33,8 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
 
     @Override
     public void onSocialLoginSuccess(SocialUserProfile socialUserProfile) {
-        Log.d("onSocialLoginSuccess", socialUserProfile.toString());
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                Toast.makeText(LogInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Config.debug("onSocialLoginSuccess", socialUserProfile.toString());
+        Toast.makeText(LogInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -50,12 +43,7 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
     }
 
     public void onFacebookSignIn(View v){
-        social=new SocialBuilder()
-                .setFacebookApplicationId(getResources().getString(R.string.facebook_app_id))
-                .setSocialType(SocialType.FACEBOOK)
-                .setCallback(this)
-                .build();
-        social.login(this);
+        social.login(new FacebookService(getResources().getString(R.string.facebook_app_id)));
     }
 
     public void onSignOut(View v){

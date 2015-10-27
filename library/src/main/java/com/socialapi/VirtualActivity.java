@@ -3,7 +3,6 @@ package com.socialapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -15,6 +14,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.gson.Gson;
+import com.socialapi.model.AbstractSocialService;
 import com.socialapi.response.FacebookResponse;
 
 import org.json.JSONObject;
@@ -33,15 +33,17 @@ public class VirtualActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         callbackManager = CallbackManager.Factory.create();
-        facebookLogin();
+        if (AbstractSocialService.type.equals("Facebook"))
+            facebookLogin();
     }
 
-    public void facebookLogin(){
+    public void facebookLogin() {
 
         Config.debug("login");
         FacebookSdk.sdkInitialize(this);
-        FacebookSdk.setApplicationId(Social.newInstance().getFacebookApplicationId());
+        FacebookSdk.setApplicationId(AbstractSocialService.facebookAppId);
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -70,6 +72,7 @@ public class VirtualActivity extends Activity {
                     }
                 });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,13 +97,13 @@ public class VirtualActivity extends Activity {
                             final FacebookResponse facebookResponse = gson.fromJson(object.toString(), FacebookResponse.class);
                             facebookResponse.setProfilePicture("https://graph.facebook.com/" + facebookResponse.getId() + "/picture?type=large");
                             VirtualActivity.this.finish();
-                            Social.newInstance().getCallback().onSocialLoginSuccess(
+                            AbstractSocialService.callback.onSocialLoginSuccess(
                                     new SocialUserProfile(facebookResponse, accessToken));
 
                         } catch (Exception e) {
                             e.printStackTrace();
                             VirtualActivity.this.finish();
-                            Social.newInstance().getCallback().onSocialLoginFailure("Failed");
+                            AbstractSocialService.callback.onSocialLoginFailure("Failed");
                         }
                     }
                 });

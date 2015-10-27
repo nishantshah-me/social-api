@@ -26,6 +26,25 @@
         android:layout_gravity="center_horizontal"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/facebook_sign_in_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="onFacebookSignIn"
+        android:text="Facebook"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/google_sign_in_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="onGoogleSignIn"
+        android:text="Google"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/email_sign_in_button"
@@ -35,16 +54,6 @@
         android:layout_marginTop="16dp"
         android:onClick="onSignOut"
         android:text="@string/action_sign_in"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/facebook_sign_in_button"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="onFacebookSignIn"
-        android:text="Facebook"
         android:textStyle="bold" />
 
 
