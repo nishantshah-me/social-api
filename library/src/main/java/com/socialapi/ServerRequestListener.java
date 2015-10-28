@@ -15,12 +15,12 @@ public interface ServerRequestListener {
      * @param tag
      * : Request id Which is used to initiate volley request.
      */
-    public <T> void onResponse(T obj, int tag);
+    <T> void onResponse(T obj, int tag);
 
     /**
      *
      * for failure handling
      * @param error
      */
-    public void onError(VolleyError error);
+    void onError(VolleyError error);
 }

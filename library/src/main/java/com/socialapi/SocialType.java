@@ -5,5 +5,5 @@ package com.socialapi;
  */
 public enum SocialType {
 
-    FACEBOOK,CUSTOM;
+    FACEBOOK,CUSTOM
 }
