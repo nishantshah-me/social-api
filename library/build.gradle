@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 23
@@ -17,6 +19,8 @@ android {
         }
     }
 }
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -27,3 +31,62 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
 }
+
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'SocialAPI'
+            description 'A wrapper library for social sign in'
+            url 'https://github.com/nishant-git/social-api'
+            inceptionYear '2015'
+
+            packaging 'aar'
+            groupId 'com.github.nishant-git'
+            artifactId 'social-api'
+            version '0.1'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'https://github.com/nishant-git/social-api.git'
+                url 'https://github.com/nishant-git/social-api'
+
+            }
+            developers {
+                developer {
+                    name 'Nishant'
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = properties.getProperty('bintray.user')
+    key = properties.getProperty('bintray.apikey')
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = 'social-api'
+        userOrg = user
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/nishant-git/social-api'
+        version {
+            name = '0.1'
+            desc = 'Social api 1.0 final'
+            vcsTag = '0.1'
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+        }
+    }
+}
+
+
+
+
+
