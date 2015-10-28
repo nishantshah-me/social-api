@@ -1,7 +1,7 @@
 package com.socialapi;
 
 /**
- * Created by webwerks on 19/10/15.
+ * Created by Nishant on 19/10/15.
  */
 public interface SocialCallback {
 

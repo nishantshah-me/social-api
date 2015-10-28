@@ -12,19 +12,17 @@ import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.Response;
-
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by KARAN on 10-Jun-15.
+ * Created by Nishant on 10-Jun-15.
  */
 public class ServerRequest {
 
@@ -41,11 +39,11 @@ public class ServerRequest {
     private Context mContext;
 
     public ServerRequest(Activity mActivity, ServerRequestListener mListener) {
-        this.mActivity = mActivity;
+        ServerRequest.mActivity = mActivity;
         this.mListener = mListener;
     }
     public ServerRequest(Fragment mFragment, ServerRequestListener mListener) {
-        this.mActivity = mFragment.getActivity();
+        mActivity = mFragment.getActivity();
         this.mListener = mListener;
     }
 
@@ -81,8 +79,6 @@ public class ServerRequest {
                 Map<String, String> postParams = params;
                 return postParams;
             }
-
-            ;
 
             /**
              * Passing some request headers

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by KARAN on 05-Jun-15.
+ * Created by Nishant on 05-Jun-15.
  */
 public class FacebookResponse implements Serializable{
 

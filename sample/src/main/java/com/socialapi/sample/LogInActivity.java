@@ -12,7 +12,7 @@ import com.socialapi.SocialUserProfile;
 import com.socialapi.model.FacebookService;
 
 /**
- * Created by webwerks on 23/10/15.
+ * Created by Nishant on 23/10/15.
  */
 public class LogInActivity extends AppCompatActivity implements SocialCallback {
 

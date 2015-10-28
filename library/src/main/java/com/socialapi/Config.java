@@ -3,7 +3,7 @@ package com.socialapi;
 import android.util.Log;
 
 /**
- * Created by webwerks on 23/10/15.
+ * Created by Nishant on 23/10/15.
  */
 public class Config {
 

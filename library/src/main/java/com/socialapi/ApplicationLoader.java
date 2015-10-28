@@ -3,7 +3,6 @@ package com.socialapi;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -12,7 +11,7 @@ import com.android.volley.toolbox.Volley;
 
 
 /**
- * Created by KARAN on 05-Jun-15.
+ * Created by Nishant on 05-Jun-15.
  */
 public class ApplicationLoader extends Application {
 
@@ -90,7 +89,7 @@ public class ApplicationLoader extends Application {
 
     public void setApplicationType(String applicationType) {
         //home , personal ,education
-        this.applicationType = applicationType;
+        ApplicationLoader.applicationType = applicationType;
     }
 
     public String getApplicationID() {
@@ -98,7 +97,7 @@ public class ApplicationLoader extends Application {
     }
 
     public void setApplicationID(String applicationID) {
-        this.applicationID = applicationID;
+        ApplicationLoader.applicationID = applicationID;
     }
 
 

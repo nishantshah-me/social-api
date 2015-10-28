@@ -8,7 +8,7 @@ import com.socialapi.SocialUserProfile;
 import com.socialapi.VirtualActivity;
 
 /**
- * Created by webwerks on 27/10/15.
+ * Created by Nishant on 27/10/15.
  */
 public abstract class AbstractSocialService<T extends Activity & SocialCallback> implements SocialCallback {
 

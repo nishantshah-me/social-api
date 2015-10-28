@@ -1,7 +1,7 @@
 package com.socialapi.model;
 
 /**
- * Created by webwerks on 27/10/15.
+ * Created by Nishant on 27/10/15.
  */
 public class FacebookService extends AbstractSocialService {
 
