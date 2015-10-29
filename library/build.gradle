@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.github.nishant-git'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -19,8 +21,7 @@ android {
         }
     }
 }
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -33,58 +34,29 @@ dependencies {
 }
 
 
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            name 'SocialAPI'
-            description 'A wrapper library for social sign in'
-            url 'https://github.com/nishant-git/social-api'
-            inceptionYear '2015'
 
-            packaging 'aar'
-            groupId 'com.github.nishant-git'
-            artifactId 'social-api'
-            version '0.1'
+android.libraryVariants.all { variant ->
+    if (variant.buildType.isDebuggable()) {
+        return; // Skip debug builds.
+    }
+    task("javadoc${variant.name.capitalize()}", type: Javadoc) {
+        description "Generates Javadoc for $variant.name."
+        source = variant.javaCompile.source
+        ext.androidJar =
+                System.getenv("ANDROID_HOME") + "/platforms/${android.compileSdkVersion}/android.jar"
+        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+    }
 
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-            scm {
-                connection 'https://github.com/nishant-git/social-api.git'
-                url 'https://github.com/nishant-git/social-api'
-
-            }
-            developers {
-                developer {
-                    name 'Nishant'
-                }
-            }
-        }
+    task("bundleJavadoc${variant.name.capitalize()}", type: Jar) {
+        description "Bundles Javadoc into zip for $variant.name."
+        classifier = "javadoc"
+        from tasks["javadoc${variant.name.capitalize()}"]
     }
 }
 
-bintray {
-    user = properties.getProperty('bintray.user')
-    key = properties.getProperty('bintray.apikey')
-    configurations = ['archives']
-    pkg {
-        repo = 'maven'
-        name = 'social-api'
-        userOrg = user
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/nishant-git/social-api'
-        version {
-            name = '0.1'
-            desc = 'Social api 1.0 final'
-            vcsTag = '0.1'
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
-    }
-}
+apply from: 'android-artifacts.gradle'
+apply from: 'central-publish.gradle'
+apply from: 'bintray-publish.gradle'
 
 
 
