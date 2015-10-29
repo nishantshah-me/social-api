@@ -8,21 +8,23 @@ import android.widget.Toast;
 import com.socialapi.Config;
 import com.socialapi.Social;
 import com.socialapi.SocialCallback;
+import com.socialapi.SocialType;
 import com.socialapi.SocialUserProfile;
 import com.socialapi.model.FacebookService;
+import com.socialapi.model.GoogleService;
 
 /**
  * Created by Nishant on 23/10/15.
  */
 public class LogInActivity extends AppCompatActivity implements SocialCallback {
 
-    private Social social;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        social=new Social(this,this);
+
     }
 
     @Override
@@ -32,7 +34,7 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
     }
 
     @Override
-    public void onSocialLoginSuccess(SocialUserProfile socialUserProfile) {
+    public void onSocialLoginSuccess(SocialUserProfile socialUserProfile,SocialType socialType) {
         Config.debug("onSocialLoginSuccess", socialUserProfile.toString());
         Toast.makeText(LogInActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
     }
@@ -43,9 +45,13 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
     }
 
     public void onFacebookSignIn(View v){
-        social.login(new FacebookService(getResources().getString(R.string.facebook_app_id)));
+        Social.with(this).login(new FacebookService(getResources().getString(R.string.facebook_app_id)));
     }
 
+    public void onGoogleSignIn(View v){
+        Social.with(this).login(new GoogleService());
+
+    }
     public void onSignOut(View v){
         if(Social.logout(this)){
             Toast.makeText(LogInActivity.this,"Logged out successfully",Toast.LENGTH_SHORT).show();

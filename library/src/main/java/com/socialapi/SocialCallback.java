@@ -5,6 +5,6 @@ package com.socialapi;
  */
 public interface SocialCallback {
 
-    void onSocialLoginSuccess(SocialUserProfile socialUserProfile);
+    void onSocialLoginSuccess(SocialUserProfile socialUserProfile,SocialType socialType);
     void onSocialLoginFailure(String errorMessage);
 }
