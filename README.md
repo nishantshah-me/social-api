@@ -1,6 +1,7 @@
 # social-api
 
 Easiest way to sign in through Facebook,Google and Twitter.
+Twitter and G+ coming soon!
 
 How do I use it?
 ---
