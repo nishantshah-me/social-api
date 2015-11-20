@@ -41,7 +41,7 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
 
     @Override
     public void onSocialLoginFailure(String errorMessage) {
-       Toast.makeText(LogInActivity.this,"Failed",Toast.LENGTH_SHORT).show();
+       Toast.makeText(LogInActivity.this,errorMessage,Toast.LENGTH_SHORT).show();
     }
 
     public void onFacebookSignIn(View v){

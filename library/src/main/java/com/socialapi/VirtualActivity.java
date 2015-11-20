@@ -15,11 +15,18 @@ public class VirtualActivity extends Activity {
     private AbstractSocialService serviceObject;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (serviceObject != null)
+            serviceObject.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         serviceObject = (AbstractSocialService) getIntent().getExtras().get("service_object");
         if (serviceObject != null) {
-            serviceObject.serviceLogin(this);
+            serviceObject.initLogin(this);
         }
 
     }
@@ -27,7 +34,15 @@ public class VirtualActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(serviceObject!=null)
-            serviceObject.onActivityResult(requestCode,resultCode,data);
+        if (serviceObject != null)
+            serviceObject.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (serviceObject != null)
+            serviceObject.onStop();
     }
 }

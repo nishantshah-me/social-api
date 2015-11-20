@@ -45,6 +45,15 @@
         android:onClick="onGoogleSignIn"
         android:text="Google"
         android:textStyle="bold" />
+<!--
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_sign_in"
+        android:onClick="onGoogleSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+-->
 
     <Button
         android:id="@+id/email_sign_in_button"

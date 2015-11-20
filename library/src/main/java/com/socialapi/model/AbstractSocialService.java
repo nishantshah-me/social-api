@@ -14,10 +14,12 @@ public abstract class AbstractSocialService implements Serializable {
 
     public abstract SocialType getType();
 
-    public abstract void serviceLogin(Activity activity);
+    public abstract void initLogin(Activity activity);
 
     public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
 
+    public abstract void onStop();
 
+    public abstract void onStart();
 
 }

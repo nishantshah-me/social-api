@@ -50,7 +50,17 @@ public class FacebookService extends AbstractSocialService {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void serviceLogin(final Activity activity) {
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    public void initLogin(final Activity activity) {
         callbackManager = CallbackManager.Factory.create();
         Config.debug("login");
         FacebookSdk.sdkInitialize(activity);
@@ -87,8 +97,6 @@ public class FacebookService extends AbstractSocialService {
 
 
     private void getFacebookData(final AccessToken accessToken, final Activity activity) {
-
-//        ServerRequest.showProgressBar(social.getProgressBar());
         GraphRequest request = GraphRequest.newMeRequest(
                 accessToken,
                 new GraphRequest.GraphJSONObjectCallback() {
