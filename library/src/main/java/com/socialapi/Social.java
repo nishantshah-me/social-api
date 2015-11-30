@@ -1,11 +1,13 @@
 package com.socialapi;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.socialapi.model.AbstractSocialService;
+import com.socialapi.model.GoogleService;
 
 /**
  * Created by Nishant on 19/10/15.
@@ -23,6 +25,11 @@ public class Social {
         this.callback = callback;
     }
 
+    public static void initServices(Context context){
+        //init Google Service
+        GoogleService.getGoogleAPIClient(context).connect();
+    }
+
     public static Social getSingleton() {
         return singleton;
     }
@@ -35,7 +42,7 @@ public class Social {
                 }
             }
         }
-       return singleton;
+        return singleton;
     }
 
     public SocialCallback getCallback() {
@@ -54,14 +61,23 @@ public class Social {
 
     public static boolean logout(Activity activity) {
         try {
-            FacebookSdk.sdkInitialize(activity);
-            LoginManager.getInstance().logOut();
+            facebookLogout(activity);
+            googleLogout(activity);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
 
+    }
+
+    private static void googleLogout(Activity activity) {
+        GoogleService.signOut(activity);
+    }
+
+    private static void facebookLogout(Activity activity) {
+        FacebookSdk.sdkInitialize(activity);
+        LoginManager.getInstance().logOut();
     }
 
     static class Builder {

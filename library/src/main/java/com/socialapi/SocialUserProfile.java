@@ -15,23 +15,26 @@ public class SocialUserProfile{
     private String fullName;
     private String token;
     private String profilePicture;
-    private AccessToken accessToken;
+    private AccessToken facebookAccessToken;
 
-    public SocialUserProfile(FacebookResponse facebookResponse,AccessToken accessToken) {
+    public SocialUserProfile(FacebookResponse facebookResponse,AccessToken facebookAccessToken) {
         this.firstName = facebookResponse.getFirst_name();
         this.lastName = facebookResponse.getLast_name();
         this.email = facebookResponse.getEmail();
         this.socialID = facebookResponse.getId();
         this.fullName = facebookResponse.getFirst_name()+" "+facebookResponse.getLast_name();
-        this.accessToken=accessToken;
+        this.facebookAccessToken = facebookAccessToken;
     }
 
-    public AccessToken getAccessToken() {
-        return accessToken;
+    public SocialUserProfile() {
     }
 
-    public void setAccessToken(AccessToken accessToken) {
-        this.accessToken = accessToken;
+    public AccessToken getFacebookAccessToken() {
+        return facebookAccessToken;
+    }
+
+    public void setFacebookAccessToken(AccessToken facebookAccessToken) {
+        this.facebookAccessToken = facebookAccessToken;
     }
 
     public String getFirstName() {

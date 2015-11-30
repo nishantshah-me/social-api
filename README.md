@@ -27,7 +27,10 @@ Next you need to write code as follows,
 It is as simple as,
 
 ```java
-Social.with(this).login(new FacebookService(getResources().getString(R.string.facebook_app_id)));
+//for facebook
+Social.with(this).login(new FacebookService("YOUR FACEBOOK APPLICATION ID");
+//for G+
+ Social.with(this).login(new GoogleService());
 ```
 ##### Logout from any screen/activity/fragment 
 ```java
