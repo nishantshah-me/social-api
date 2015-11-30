@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.nishant-git:social-api:1.0.1'
+    compile 'com.github.nishant-git:social-api:1.1'
 }
 ```
 ### Getting started
