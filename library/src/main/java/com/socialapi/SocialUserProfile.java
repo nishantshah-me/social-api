@@ -2,6 +2,8 @@ package com.socialapi;
 
 import com.facebook.AccessToken;
 import com.socialapi.response.FacebookResponse;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterSession;
 
 /**
  * Created by Nishant on 19/10/15.
@@ -27,6 +29,10 @@ public class SocialUserProfile{
     }
 
     public SocialUserProfile() {
+    }
+
+    public SocialUserProfile(Result<TwitterSession> result) {
+       Config.debug(result.toString());
     }
 
     public AccessToken getFacebookAccessToken() {

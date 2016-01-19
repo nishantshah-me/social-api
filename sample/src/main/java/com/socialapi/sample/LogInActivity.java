@@ -12,6 +12,7 @@ import com.socialapi.SocialType;
 import com.socialapi.SocialUserProfile;
 import com.socialapi.model.FacebookService;
 import com.socialapi.model.GoogleService;
+import com.socialapi.model.TwitterService;
 
 /**
  * Created by Nishant on 23/10/15.
@@ -50,7 +51,10 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
 
     public void onGoogleSignIn(View v){
         Social.with(this).login(new GoogleService());
+    }
 
+    public void onTwitterSignIn(View v){
+        Social.with(this).login(new TwitterService("idpewZMGSQUth0nkhlyFKMuWO","nBEo41kWDNrr0H33oMN3dzHWPaC9ch0UYBlnmQ5sUBf2OmHWsW"));
     }
     public void onSignOut(View v){
         if(Social.logout(this)){
