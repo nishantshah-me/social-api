@@ -3,6 +3,7 @@ package com.socialapi;
 import com.facebook.AccessToken;
 import com.socialapi.response.FacebookResponse;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterSession;
 
 /**
@@ -16,6 +17,7 @@ public class SocialUserProfile{
     private String socialID;
     private String fullName;
     private String token;
+    private String secret;
     private String profilePicture;
     private AccessToken facebookAccessToken;
 
@@ -33,6 +35,9 @@ public class SocialUserProfile{
 
     public SocialUserProfile(Result<TwitterSession> result) {
        Config.debug(result.toString());
+        TwitterAuthToken authToken = result.data.getAuthToken();
+        this.token = authToken.token;
+        this.secret = authToken.secret;
     }
 
     public AccessToken getFacebookAccessToken() {
@@ -99,7 +104,13 @@ public class SocialUserProfile{
         this.profilePicture = profilePicture;
     }
 
+    public String getSecret() {
+        return secret;
+    }
 
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
     @Override
     public String toString() {
@@ -110,7 +121,9 @@ public class SocialUserProfile{
                 ", socialID='" + socialID + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", token='" + token + '\'' +
+                ", secret='" + secret + '\'' +
                 ", profilePicture='" + profilePicture + '\'' +
+                ", facebookAccessToken=" + facebookAccessToken +
                 '}';
     }
 }

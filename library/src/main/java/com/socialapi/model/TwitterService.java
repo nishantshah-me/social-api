@@ -2,7 +2,6 @@ package com.socialapi.model;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 
 import com.socialapi.Social;
 import com.socialapi.SocialType;
@@ -39,7 +38,7 @@ public class TwitterService extends AbstractSocialService  {
     }
 
     @Override
-    public void initLogin(Activity activity) {
+    public void initLogin(final Activity activity) {
         TwitterAuthConfig authConfig =
                 new TwitterAuthConfig(consumerKey,
                         consumerSecret);
@@ -60,11 +59,10 @@ public class TwitterService extends AbstractSocialService  {
             public void failure(TwitterException exception) {
                 // Do something on failure
                 Social.getSingleton().getCallback().onSocialLoginFailure("Failed");
+                activity.finish();
             }
         });
         loginButton.performClick();
-
-
     }
 
     @Override

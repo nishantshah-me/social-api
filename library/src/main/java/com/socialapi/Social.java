@@ -45,6 +45,7 @@ public class Social {
         return singleton;
     }
 
+
     public SocialCallback getCallback() {
         return callback;
     }
