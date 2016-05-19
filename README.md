@@ -1,7 +1,5 @@
 # social-api
 
-**Library is still in development final product will be release soon**
-
 Easiest way to sign in through Facebook,Google and Twitter.
 Twitter coming soon!
 
@@ -14,6 +12,8 @@ How do I use it?
 ```groovy
 repositories {
     jcenter()
+    maven { url "https://dl.bintray.com/nishant-bintray/maven" }
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 dependencies {
