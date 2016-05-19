@@ -1,5 +1,7 @@
 # social-api
 
+**Library is still in development final product will be release soon**
+
 Easiest way to sign in through Facebook,Google and Twitter.
 Twitter coming soon!
 
@@ -41,7 +43,7 @@ Social.with(this).login(new FacebookService("YOUR FACEBOOK APPLICATION ID");
         }
 ```
 
-**Library is still in development so more features will be added soon**
+
 
 License
 -------
