@@ -8,6 +8,10 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.socialapi.model.AbstractSocialService;
 import com.socialapi.model.GoogleService;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by Nishant on 19/10/15.
@@ -64,6 +68,7 @@ public class Social {
         try {
             facebookLogout(activity);
             googleLogout(activity);
+	        twitterLogout(activity);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,13 +77,37 @@ public class Social {
 
     }
 
-    private static void googleLogout(Activity activity) {
-        GoogleService.signOut(activity);
+	private static void twitterLogout( Activity activity )
+	{
+		try
+		{
+			TwitterAuthConfig authConfig =
+					new TwitterAuthConfig( "e6KbBJJc0EOYS96fOUjWtGNfU",
+					                       "CGxh4gRrCsQph4SSbJQ5fx7pSwousUfAC0dXvflDTnxG4dspdQ" );
+			Fabric.with( activity, new TwitterCore( authConfig ) );
+			TwitterCore.getInstance().logOut();
+		}catch ( Exception e ){
+			e.printStackTrace();
+		}
+	}
+
+	private static void googleLogout(Activity activity) {
+		try
+		{
+			GoogleService.signOut( activity );
+		}catch ( Exception e ){
+			e.printStackTrace();
+		}
     }
 
     private static void facebookLogout(Activity activity) {
-        FacebookSdk.sdkInitialize(activity);
-        LoginManager.getInstance().logOut();
+	    try
+	    {
+		    FacebookSdk.sdkInitialize( activity );
+		    LoginManager.getInstance().logOut();
+	    }catch ( Exception e ){
+		    e.printStackTrace();
+	    }
     }
 
     static class Builder {

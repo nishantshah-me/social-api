@@ -10,9 +10,7 @@ How do I use it?
 
 ##### Gradle
 ```groovy
-repositories {
-    jcenter()
-    maven { url "https://dl.bintray.com/nishant-bintray/maven" }
+repositories {    
     maven { url 'https://maven.fabric.io/public' }
 }
 

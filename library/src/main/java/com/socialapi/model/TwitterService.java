@@ -8,6 +8,7 @@ import com.socialapi.SocialType;
 import com.socialapi.SocialUserProfile;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.Session;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
@@ -51,6 +52,7 @@ public class TwitterService extends AbstractSocialService  {
             @Override
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
+
                 Social.getSingleton().getCallback().onSocialLoginSuccess(
                         new SocialUserProfile(result), SocialType.TWITTER);
             }
@@ -59,6 +61,7 @@ public class TwitterService extends AbstractSocialService  {
             public void failure(TwitterException exception) {
                 // Do something on failure
                 Social.getSingleton().getCallback().onSocialLoginFailure("Failed");
+	            exception.printStackTrace();
                 activity.finish();
             }
         });
