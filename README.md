@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.nishant-git:library:1.1'
+    compile 'com.github.nishant-git:library:1.2'
 }
 ```
 ### Getting started
@@ -31,6 +31,8 @@ It is as simple as,
 Social.with(this).login(new FacebookService("YOUR FACEBOOK APPLICATION ID");
 //for G+
  Social.with(this).login(new GoogleService());
+//for Twitter
+ Social.with(this).login(new TwitterService("Consumer Key","Consumer Secret"));
 ```
 ##### Logout from any screen/activity/fragment 
 ```java

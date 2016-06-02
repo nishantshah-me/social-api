@@ -33,11 +33,14 @@ public class SocialUserProfile{
     public SocialUserProfile() {
     }
 
-    public SocialUserProfile(Result<TwitterSession> result) {
+    public SocialUserProfile(Result<TwitterSession> result,String email,String fullName,String profilePicture) {
        Config.debug(result.toString());
         TwitterAuthToken authToken = result.data.getAuthToken();
         this.token = authToken.token;
         this.secret = authToken.secret;
+        this.email=email;
+        this.fullName=fullName;
+        this.profilePicture=profilePicture;
     }
 
     public AccessToken getFacebookAccessToken() {

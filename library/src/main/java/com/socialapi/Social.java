@@ -3,14 +3,12 @@ package com.socialapi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.socialapi.model.AbstractSocialService;
 import com.socialapi.model.GoogleService;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
-
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -64,8 +62,8 @@ public class Social {
         Social.getSingleton().getActivity().startActivity(intent);
     }
 
-    public static boolean logout(Activity activity) {
-        try {
+  public static boolean logout(Activity activity) {
+    try {
             facebookLogout(activity);
             googleLogout(activity);
 	        twitterLogout(activity);

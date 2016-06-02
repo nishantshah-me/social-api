@@ -78,7 +78,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 
 
 group='com.github.nishant-git'
-version = '1.1'
+version = '1.2'
 
 
 bintray {

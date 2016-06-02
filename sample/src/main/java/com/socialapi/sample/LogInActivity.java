@@ -54,7 +54,6 @@ public class LogInActivity extends AppCompatActivity implements SocialCallback {
     }
 
     public void onTwitterSignIn(View v){
-        //Social.with(this).login(new TwitterService("idpewZMGSQUth0nkhlyFKMuWO","nBEo41kWDNrr0H33oMN3dzHWPaC9ch0UYBlnmQ5sUBf2OmHWsW"));
         Social.with(this).login(new TwitterService("e6KbBJJc0EOYS96fOUjWtGNfU","CGxh4gRrCsQph4SSbJQ5fx7pSwousUfAC0dXvflDTnxG4dspdQ"));
     }
     public void onSignOut(View v){
